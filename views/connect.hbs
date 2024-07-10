@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .connect-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .connect-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .google-btn {
+      background-color: #d75d45;
+      color: white;
+    }
+
+    .google-btn:hover {
+      background-color: #d75d45;
+      transform: scale(1.05);
+    }
+
+    .outlook-btn {
+      background-color: #0897f0;
+      color: white;
+    }
+
+    .outlook-btn:hover {
+      background-color: #0897f0;
+      transform: scale(1.05);
+    }
+
+    .connect-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .flash-message {
+      color: green;
+      margin-bottom: 15px;
+    }
+
+    .policy {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .policy a {
+      color: #0897f0;
+      text-decoration: none;
+    }
+
+    .policy input {
+      margin-right: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+
+      .connect-btn {
+        font-size: 14px;
+      }
+
+      .connect-btn img {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+
+      .policy {
+        font-size: 12px;
+      }
+    }
+  </style>
+  <script>
+    function toggleConnectButtons() {
+      const checkBox = document.getElementById('policyCheck');
+      const connectButtons = document.querySelectorAll('.connect-btn');
+      if (checkBox.checked) {
+        connectButtons.forEach(button => {
+          button.style.opacity = '1';
+          button.style.pointerEvents = 'auto';
+        });
+      } else {
+        connectButtons.forEach(button => {
+          button.style.opacity = '0.5';
+          button.style.pointerEvents = 'none';
+        });
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="connect-box">
+      <img src="https://res.cloudinary.com/ddi6arl8i/image/upload/v1719359415/Logos/check-emails_logo_firvpw.png" alt="Logo" class="logo">
+      <h1>Process Emails</h1>
+      {{#if message}}
+      <div class="flash-message">{{message}}</div>
+      {{/if}}
+      <button class="connect-btn google-btn" onclick="window.location.href='/auth/google'">
+        <img src="https://res.cloudinary.com/ddi6arl8i/image/upload/v1719615780/Logos/gmail_2_jqpcce.png" alt="Gmail Logo">
+        <b>Connect with Gmail</b>
+      </button>
+      <button class="connect-btn outlook-btn" onclick="window.location.href='/auth/outlook'">
+        <img src="https://res.cloudinary.com/ddi6arl8i/image/upload/v1719360135/Logos/outlook-logo_v0wfxo.png" alt="Outlook Logo">
+        <b>Connect with Outlook</b>
+      </button>
+      <div class="policy">
+        <input type="checkbox" id="policyCheck" onclick="toggleConnectButtons()">
+        <label for="policyCheck">I have read and agree to the <a href="/privacy-policy" target="_blank">Privacy Policy</a></label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
